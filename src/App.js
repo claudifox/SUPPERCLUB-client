@@ -6,7 +6,7 @@ import {
 import './App.css';
 import NavBar from './containers/NavBar'
 import Home from './containers/Home'
-import CreateSupperForm from './containers/CreateSupperForm'
+import NewSupperForm from './containers/NewSupperForm'
 
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
           <NavBar showPopUp={this.state.showPopUp}/>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/create-supper" render={(props) => <CreateSupperForm /> } />
+            <Route exact path="/new-supper" render={(props) => <NewSupperForm /> } />
           </Switch>
       </div>
     );
