@@ -1,0 +1,43 @@
+/* .LogInForm {
+  background: #FAFAFA;
+  border: 1px solid #979797;
+  border-radius: 5px;
+} */
+
+input[type=submit] {
+font-family: AvenirNext-Bold;
+font-size: 16px;
+color: #FFFFFF;
+letter-spacing: 0;
+text-align: center;
+border: 1px solid #979797;
+border: 1px solid #979797;
+}
+
+/* font-family: AvenirNext-Regular;
+font-size: 15px;
+color: #BBBBBB;
+letter-spacing: 0;
+text-align: center;
+text-shadow: 0 1px 0 rgba(255,255,255,0.50);
+
+font-family: AvenirNext-Regular;
+font-size: 15px;
+color: rgba(214,12,84,0.64);
+letter-spacing: 0;
+text-align: center;
+text-shadow: 0 1px 0 rgba(255,255,255,0.50);
+
+font-family: AvenirNext-Regular;
+font-size: 15px;
+color: rgba(214,12,84,0.64);
+letter-spacing: 0;
+text-align: center;
+text-shadow: 0 1px 0 rgba(255,255,255,0.50);
+
+font-family: AvenirNext-Bold;
+font-size: 15px;
+color: #D60C54;
+letter-spacing: 0;
+text-align: center;
+text-shadow: 0 1px 0 rgba(255,255,255,0.50); */

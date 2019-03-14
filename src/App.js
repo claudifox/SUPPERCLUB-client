@@ -7,21 +7,23 @@ import './App.css';
 import NavBar from './containers/NavBar'
 import Home from './containers/Home'
 import NewSupperForm from './containers/NewSupperForm'
+import BecomeHostContainer from './containers/BecomeHostContainer'
 
 
 class App extends Component {
 
   state = {
-    showPopUp: false,
+    currentUser: "",
   }
 
   render() {
     return (
       <div className="SUPPERCLUB">
-          <NavBar showPopUp={this.state.showPopUp}/>
+          <NavBar />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/new-supper" render={(props) => <NewSupperForm /> } />
+            <Route exact path="/become-a-host" render={(props) => <BecomeHostContainer /> } />
           </Switch>
       </div>
     );
