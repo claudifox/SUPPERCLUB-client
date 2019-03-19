@@ -9,6 +9,7 @@ import Home from './containers/Home'
 import NewSupperForm from './containers/NewSupperForm'
 import API from './API.js';
 import Profile from './containers/Profile'
+import Suppers from './containers/Suppers'
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -27,9 +28,11 @@ class App extends Component {
 
 
   logIn = user => {
-    console.log("passed")
     localStorage.setItem("token", user.token)
-    this.setState({loggedIn: true})
+    this.setState({
+      loggedIn: true
+    })
+    this.getUserInfo(user)
   }
 
   logOut = user => {
@@ -48,6 +51,7 @@ class App extends Component {
       emailAddress: user.email_address,
       profilePicture: user.profile_picture,
       description: user.description,
+      userId: user.user_id
     },
     })
   }
@@ -58,7 +62,6 @@ class App extends Component {
         this.logOut()
       } else {
         this.logIn(userData)
-        this.getUserInfo(userData)
       }
     })
   }
@@ -73,6 +76,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/new-supper" render={(props) => <NewSupperForm handleSubmit={this.handleNewSupperSubmit} handleSelect={this.handleSelect} createSupper={this.createSupper} currentUser={this.state.currentUser} /> } />
             <Route exact path="/profile" render={(props) => <Profile currentUser={this.state.currentUser}/> } />
+            <Route exact path="/suppers" render={(props) => <Suppers currentUser={this.state.currentUser}/> } />
 
           </Switch>
       </div>

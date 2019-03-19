@@ -3,58 +3,77 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-
-
+import API from '../API.js'
 
 export default class NewSupperForm extends Component {
 
     state = {
-      name: "",
-      date: "",
-      time: "",
       address: "",
-      selectedAddressLngLat: "",
-      selectedAddress: "",
+      newSupper: {
+        name: "",
+        picture: "",
+        description: "",
+        date: "",
+        time: "",
+        selectedAddressLngLat: "",
+        selectedAddress: "",
+      },
     }
 
     handleChange = event => {
-      this.setState({[event.target.name]: event.target.value})
+      this.setState({
+        newSupper: {
+          ...this.state.newSupper,
+          [event.target.name]: event.target.value
+      }}
+      )
     }
-
-    handleAddressChange = address => {
-      this.setState({ address });
-    };
 
     handleSelect = address => {
       this.setState({
-        selectedAddress: address });
+        newSupper: {
+          ...this.state.newSupper,
+          selectedAddress: address
+        }
+      });
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
         .then(latLng => {
           this.setState({
-            selectedAddressLngLat: latLng
+            newSupper: {
+              ...this.state.newSupper,
+              selectedAddressLngLat: latLng
+          }
           })
           console.log('Success', latLng)
         })
         .catch(error => console.error('Error', error));
     };
 
-    handleSubmit = event => {
+    handleAddressChange = address => {
+      this.setState({ address });
+    };
 
+    handleNewSupperSubmit = event => {
+      event.preventDefault()
+      API.createSupper(this.state.newSupper, this.props.currentUser)
+      debugger
     }
+
 
   render() {
     return (
       <div className="NewSupperForm" >
         <h3 className="title">Want to host your own supper?</h3>
-        <form>
-        <label className="label">
-          NAME
-          <input className="input" type="text" name="name" value ={this.state.name} onChange={this.handleChange} />
-        </label>
+        <form method="POST" onSubmit={this.handleNewSupperSubmit}>
+          <label className="label">NAME</label>
+          <input className="input" type="text" name="name" value={this.state.newSupper.name} onChange={this.handleChange} autoFocus/>
+          <label className="label">DESCRIPTION</label>
+          <input className="input" type="text" name="description" value={this.state.newSupper.description} onChange={this.handleChange} />
+          <label className="label">PHOTO</label>
+          <input className="input" type="file" name="picture" onChange={this.handleChange} />
           <label className="label">DATE </label>
           <input className="input" type="date" name="date" onChange={this.handleChange} />
-
           <label className="label">TIME </label>
           <input className="input" type="time" name="time" onChange={this.handleChange} />
 

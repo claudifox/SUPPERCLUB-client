@@ -23,7 +23,7 @@ class API {
   }
 
   static createSupper(supper, user) {
-    fetch(baseUrl + `/users/${user.id}/suppers`, {
+    fetch(baseUrl + `users/${user.userId}/suppers`, {
       headers: {"Content-Type": "application/json"},
       method: 'POST',
       body: JSON.stringify({
