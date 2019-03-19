@@ -22,16 +22,22 @@ class App extends Component {
 
   state = {
     currentUser: {},
+    loggedIn: false,
   }
 
 
   logIn = user => {
+    console.log("passed")
     localStorage.setItem("token", user.token)
+    this.setState({loggedIn: true})
   }
 
   logOut = user => {
     localStorage.removeItem("token")
-    this.setState({currentUser: {}})
+    this.setState({
+      currentUser: {},
+      loggedIn: false,
+    })
   }
 
   getUserInfo = user => {
@@ -42,7 +48,8 @@ class App extends Component {
       emailAddress: user.email_address,
       profilePicture: user.profile_picture,
       description: user.description,
-    }})
+    },
+    })
   }
 
   componentDidMount() {
@@ -58,14 +65,13 @@ class App extends Component {
 
 
 
-
   render() {
     return (
       <div className="SUPPERCLUB">
-          <NavBar currentUser={this.state.currentUser} logIn={this.logIn} logOut={this.logOut}/>
+          <NavBar currentUser={this.state.currentUser} logIn={this.logIn} logOut={this.logOut} loggedIn={this.state.loggedIn}/>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/new-supper" render={(props) => <NewSupperForm /> } />
+            <Route exact path="/new-supper" render={(props) => <NewSupperForm handleSubmit={this.handleNewSupperSubmit} handleSelect={this.handleSelect} createSupper={this.createSupper} currentUser={this.state.currentUser} /> } />
             <Route exact path="/profile" render={(props) => <Profile currentUser={this.state.currentUser}/> } />
 
           </Switch>

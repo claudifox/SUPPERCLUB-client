@@ -12,7 +12,7 @@ class API {
     }).then(response => response.json());
   }
 
-  static create(user) {
+  static createUser(user) {
     return fetch(baseUrl + "users", {
       method: "POST",
       headers: {
@@ -20,6 +20,23 @@ class API {
       },
       body: JSON.stringify(user)
     }).then(response => response.json());
+  }
+
+  static createSupper(supper, user) {
+    fetch(baseUrl + `/users/${user.id}/suppers`, {
+      headers: {"Content-Type": "application/json"},
+      method: 'POST',
+      body: JSON.stringify({
+        name: supper.name,
+        description: supper.description,
+        picture: supper.picture,
+        date: supper.date,
+        time: supper.time,
+        address: supper.selectedAddress,
+        latLng: supper.selectedAddressLngLat,
+      })
+    })
+    .then(response => response.json())
   }
 
   static validate() {
@@ -30,11 +47,11 @@ class API {
     return this.get(baseUrl + "user_info")
   }
 
-  static getSuppers(user) {
+  static getHostedSuppers(user) {
     return this.get(baseUrl + `/users/${user.id}/suppers`);
   }
 
-  static getBookings(user) {
+  static getAttendedSuppers(user) {
     return this.get(baseUrl + `/users/${user.id}/bookings`);
   }
 

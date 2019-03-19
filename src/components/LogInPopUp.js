@@ -17,26 +17,24 @@ export default class LogInPopUp extends Component {
 
   handleLogInSubmit = event => {
     event.preventDefault()
-    const { logIn, history } = this.props
     const user = this.state
     API.login(user).then(data => {
       if (data.error) {
         alert('Email address/password invalid')
       } else {
-        logIn(data)
+        this.props.logIn(data)
       }
     })
   }
 
   render() {
-    const { email_address, password } = this.state
-    const { handleChange } = this.props
+
     return (
       <div className="Form" >
         <form onSubmit={this.handleLogInSubmit}>
-          <input className="input" type="text" name="email_address" placeholder="Email Address" autoComplete="email_address" onChange={this.handleChange} />
+          <input className="input" type="email" name="email_address" placeholder="Email Address" autoComplete="email_address" onChange={this.handleChange} />
           <input className="input" type="password" name="password" placeholder="Password" onChange={this.handleChange} />
-          < Link to="/profile" ><input type="submit" value="Log In" /></Link>
+          <input type="submit" value="Log In"/>
         </form>
       </div>
     )
