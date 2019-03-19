@@ -57,7 +57,7 @@ export default class NewSupperForm extends Component {
     handleNewSupperSubmit = event => {
       event.preventDefault()
       API.createSupper(this.state.newSupper, this.props.currentUser)
-      debugger
+      
     }
 
 

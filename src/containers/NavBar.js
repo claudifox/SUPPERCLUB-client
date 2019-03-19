@@ -15,70 +15,77 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <ul>
-        <li>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <h1 className="logo"  >SUPPERCLUB</h1>
-          </Link>
-        </li>
-        {this.props.loggedIn ?
-          <ul>
-            <li>
-            <Link to="/new-supper" style={{ textDecoration: 'none' }}>
-            <h1 className="NavBarLink"  >HOST A SUPPER</h1>
+      <div className="NavBar">
+        <ul>
+          <li>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <h1 className="logo"  >SUPPERCLUB</h1>
             </Link>
-            </li>
-            <li>
-            <Link to="/profile" style={{ textDecoration: 'none' }}>
-            <h1 className="NavBarLink"  >MY PROFILE</h1>
-            </Link>
-            </li>
-            <li>
-            <Link to="/" style={{ textDecoration: 'none' }} onClick={this.props.logOut}>
-            <h1 className="NavBarLink"  >LOG OUT</h1>
-            </Link>
-            </li>
-          </ul>
-          :
-          <div>
-            <Popup
-              trigger={<button className="NavBarLink"> SIGN UP </button>}
-              modal
-              >
-              {close => (
-                <div className="modal">
-                <a className="close" onClick={close}>
-                &times;
-                </a>
-                <div className="content">
-                <SignUpPopUp logIn={this.props.logIn} handleChange={this.handleChange} />
-                </div>
-                </div>
-              )}
-              </Popup>
-            <Popup
-              trigger={<button className="NavBarLink"> LOG IN </button>}
-              modal
-              >
-              {close => (
-                <div className="modal">
-                <a className="close" onClick={close}>
-                &times;
-                </a>
-                <div className="content">
-                <LogInPopUp logIn={this.props.logIn} handleChange={this.handleChange} loggedIn={this.props.loggedIn} />
-                </div>
-                </div>
-              )}
-              </Popup>
-            </div>
-
-        }
-
-
-
-
-      </ul>
+          </li>
+          {this.props.loggedIn ?
+            <ul>
+              <li>
+              <Link to="/new-supper" style={{ textDecoration: 'none' }}>
+              <button className="NavBarLink"  >HOST A SUPPER</button>
+              </Link>
+              </li>
+              <li>
+              <Link to="/hosted-suppers">
+              <button className="NavBarLink">HOSTING</button>
+              </Link>
+              </li>
+              <li>
+              <Link to="/attending-suppers">
+              <button className="NavBarLink">ATTENDING</button>
+              </Link>
+              </li>
+              <li>
+              <Link to="/profile" style={{ textDecoration: 'none' }}>
+              <button className="NavBarLink"  >MY PROFILE</button>
+              </Link>
+              </li>
+              <li>
+              <Link to="/" style={{ textDecoration: 'none' }} onClick={this.props.logOut}>
+              <button className="NavBarLink"  >LOG OUT</button>
+              </Link>
+              </li>
+            </ul>
+            :
+            <div>
+              <Popup
+                trigger={<button className="NavBarLink"> SIGN UP </button>}
+                modal
+                >
+                {close => (
+                  <div className="modal">
+                  <button className="close" onClick={close}>
+                  &times;
+                  </button>
+                  <div className="content">
+                  <SignUpPopUp logIn={this.props.logIn} handleChange={this.handleChange} />
+                  </div>
+                  </div>
+                )}
+                </Popup>
+              <Popup
+                trigger={<button className="NavBarLink"> LOG IN </button>}
+                modal
+                >
+                {close => (
+                  <div className="modal">
+                  <button className="close" onClick={close}>
+                  &times;
+                  </button>
+                  <div className="content">
+                  <LogInPopUp logIn={this.props.logIn} handleChange={this.handleChange} loggedIn={this.props.loggedIn} />
+                  </div>
+                  </div>
+                )}
+                </Popup>
+              </div>
+          }
+        </ul>
+      </div>
     )
   }
 }

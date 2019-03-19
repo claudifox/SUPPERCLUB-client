@@ -48,11 +48,11 @@ class API {
   }
 
   static getHostedSuppers(user) {
-    return this.get(baseUrl + `/users/${user.id}/suppers`);
+    return this.get(baseUrl + `/users/${user.userId}/hosted_suppers`);
   }
 
   static getAttendedSuppers(user) {
-    return this.get(baseUrl + `/users/${user.id}/bookings`);
+    return this.get(baseUrl + `/users/${user.userId}/attended_suppers`);
   }
 
   static get(url) {

@@ -9,14 +9,12 @@ import Home from './containers/Home'
 import NewSupperForm from './containers/NewSupperForm'
 import API from './API.js';
 import Profile from './containers/Profile'
-import Suppers from './containers/Suppers'
+import HostedSuppers from './containers/HostedSuppers'
+import AttendingSuppers from './containers/AttendingSuppers'
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-
-
-
 
 
 class App extends Component {
@@ -24,8 +22,9 @@ class App extends Component {
   state = {
     currentUser: {},
     loggedIn: false,
+    hostedSuppers: null,
+    attendingSuppers: [],
   }
-
 
   logIn = user => {
     localStorage.setItem("token", user.token)
@@ -54,6 +53,19 @@ class App extends Component {
       userId: user.user_id
     },
     })
+    this.getHostedSuppers()
+    this.getAttendedSuppers()
+
+  }
+
+  getHostedSuppers = () => {
+    API.getHostedSuppers(this.state.currentUser)
+      .then(suppers => this.setState({hostedSuppers: suppers}))
+  }
+
+  getAttendedSuppers = () => {
+    API.getAttendedSuppers(this.state.currentUser)
+      .then(suppers => this.setState({attendingSuppers: suppers}))
   }
 
   componentDidMount() {
@@ -66,8 +78,6 @@ class App extends Component {
     })
   }
 
-
-
   render() {
     return (
       <div className="SUPPERCLUB">
@@ -75,8 +85,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/new-supper" render={(props) => <NewSupperForm handleSubmit={this.handleNewSupperSubmit} handleSelect={this.handleSelect} createSupper={this.createSupper} currentUser={this.state.currentUser} /> } />
-            <Route exact path="/profile" render={(props) => <Profile currentUser={this.state.currentUser}/> } />
-            <Route exact path="/suppers" render={(props) => <Suppers currentUser={this.state.currentUser}/> } />
+            <Route exact path="/profile" render={(props) => <Profile currentUser={this.state.currentUser} /> } />
+            <Route exact path="/hosted-suppers" render={(props) => <HostedSuppers currentUser={this.state.currentUser} hostedSuppers={this.state.hostedSuppers}/> } />
+            <Route exact path="/attending-suppers" render={(props) => <AttendingSuppers currentUser={this.state.currentUser} attendingSuppers={this.state.attendingSuppers}/> } />
 
           </Switch>
       </div>
