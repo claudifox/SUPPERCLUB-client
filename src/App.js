@@ -1,3 +1,4 @@
+// /* global google */
 import React, { Component } from 'react';
 import {
   Route,
@@ -17,7 +18,10 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 
 
+
+
 class App extends Component {
+
 
   state = {
     currentUser: {
@@ -34,7 +38,8 @@ class App extends Component {
     suppers: [],
     address: "",
     givenLocation: {
-      selectedAddressLngLat: "",
+      lat: 0.0,
+      lng: 0.0,
       selectedAddress: "",
     }
   }
@@ -94,6 +99,47 @@ class App extends Component {
       .then(suppers => this.setState({suppers}))
   }
 
+  filteredSuppers = () => {
+    this.state.suppers.map(supper => {
+      const supperLatLng = {lat: supper.lat, lng: supper.lng}
+      // const supperGoogleLatLng = new google.maps.latLng(supperLatLng)
+      debugger
+      const givenLatLng = {lat: this.state.givenLocation.lat, lng: this.state.givenLocation.lng}
+
+      // const distance = google.maps.geometry.spherical.computeDistanceBetween()
+
+    })
+  }
+
+  handleSelect = address => {
+    this.setState({
+      givenLocation: {
+        ...this.state.givenLocation,
+        selectedAddress: address
+      }
+    });
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+        this.setState({
+          givenLocation: {
+            ...this.state.givenLocation,
+            lat: latLng.lat,
+            lng: latLng.lng
+        }
+        })
+        console.log('Success', latLng)
+        this.filteredSuppers()
+      })
+      .catch(error => console.error('Error', error));
+
+  };
+
+  handleAddressChange = address => {
+    this.setState({ address });
+  };
+
+
   componentDidMount() {
     API.validate().then(userData => {
       if (userData.error) {
@@ -109,7 +155,13 @@ class App extends Component {
       <div className="SUPPERCLUB">
           <NavBar currentUser={this.state.currentUser} logIn={this.logIn} logOut={this.logOut} loggedIn={this.state.loggedIn}/>
           <Switch>
-            <Route exact path="/" render={(props) => <Home address={this.state.address} givenLocation={this.state.givenLocation} {...props} />}/>
+            <Route exact path="/" render={(props) => <Home
+              address={this.state.address}
+              givenLocation={this.state.givenLocation}
+              filteredSuppers={this.filteredSuppers}
+              handleSelect={this.handleSelect}
+              handleAddressChange={this.handleAddressChange}
+              {...props} />}/>
             <Route exact path="/new-supper" render={(props) => <NewSupperForm handleSubmit={this.handleNewSupperSubmit} handleSelect={this.handleSelect} createSupper={this.createSupper} currentUser={this.state.currentUser} /> } />
             <Route exact path="/profile" render={(props) => <Profile currentUser={this.state.currentUser} /> } />
             <Route exact path="/hosted-suppers" render={(props) => <HostedSuppers currentUser={this.state.currentUser} hostedSuppers={this.state.hostedSuppers}/> } />

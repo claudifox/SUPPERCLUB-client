@@ -15,8 +15,8 @@ export default class NewSupperForm extends Component {
         description: "",
         date: "",
         time: "",
-        selectedAddressLngLat: "",
-        selectedAddress: "",
+        lat: 0.0,
+        lng: 0.0,
       },
     }
 
@@ -42,7 +42,8 @@ export default class NewSupperForm extends Component {
           this.setState({
             newSupper: {
               ...this.state.newSupper,
-              selectedAddressLngLat: latLng
+              lat: latLng.lat,
+              lng: latLng.lng
           }
           })
           console.log('Success', latLng)
@@ -57,7 +58,7 @@ export default class NewSupperForm extends Component {
     handleNewSupperSubmit = event => {
       event.preventDefault()
       API.createSupper(this.state.newSupper, this.props.currentUser)
-      
+
     }
 
 
@@ -71,7 +72,7 @@ export default class NewSupperForm extends Component {
           <label className="label">DESCRIPTION</label>
           <input className="input" type="text" name="description" value={this.state.newSupper.description} onChange={this.handleChange} />
           <label className="label">PHOTO</label>
-          <input className="input" type="file" name="picture" onChange={this.handleChange} />
+          <input className="input" type="text" name="picture" onChange={this.handleChange} />
           <label className="label">DATE </label>
           <input className="input" type="date" name="date" onChange={this.handleChange} />
           <label className="label">TIME </label>

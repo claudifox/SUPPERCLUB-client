@@ -23,7 +23,7 @@ class API {
   }
 
   static createSupper(supper, user) {
-    fetch(baseUrl + `users/${user.userId}/suppers`, {
+    fetch(baseUrl + `users/${user.userId}/hosted_suppers`, {
       headers: {"Content-Type": "application/json"},
       method: 'POST',
       body: JSON.stringify({
@@ -33,7 +33,8 @@ class API {
         date: supper.date,
         time: supper.time,
         address: supper.selectedAddress,
-        latLng: supper.selectedAddressLngLat,
+        lat: supper.lat,
+        lng: supper.lng,
       })
     })
     .then(response => response.json())

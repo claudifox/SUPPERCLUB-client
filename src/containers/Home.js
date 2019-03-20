@@ -10,7 +10,13 @@ export default class Home extends Component {
     return (
       <div className="HomePage">
         <div className="HeroImage">
-          <HomePageSearchForm address={this.props.address} givenLocation={this.props.givenLocation} />
+          <HomePageSearchForm
+            address={this.props.address}
+            givenLocation={this.props.givenLocation}
+            filteredSuppers={this.props.filteredSuppers}
+            handleSelect={this.props.handleSelect}
+            handleAddressChange={this.props.handleAddressChange}
+            />
         </div>
         <Explore />
       </div>
