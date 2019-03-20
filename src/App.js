@@ -20,7 +20,14 @@ import PlacesAutocomplete, {
 class App extends Component {
 
   state = {
-    currentUser: {},
+    currentUser: {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      profilePicture: "",
+      description: "",
+      userId: "",
+    },
     loggedIn: false,
     hostedSuppers: [],
     attendingSuppers: [],
@@ -43,7 +50,14 @@ class App extends Component {
   logOut = user => {
     localStorage.removeItem("token")
     this.setState({
-      currentUser: {},
+      currentUser: {
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        profilePicture: "",
+        description: "",
+        userId: "",
+      },
       loggedIn: false,
     })
   }
