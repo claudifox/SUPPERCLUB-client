@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
       <div className="HomePage">
         <div className="HeroImage">
-          <HomePageSearchForm />
+          <HomePageSearchForm address={this.props.address} givenLocation={this.props.givenLocation} />
         </div>
         <Explore />
       </div>

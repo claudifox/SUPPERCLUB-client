@@ -47,6 +47,10 @@ class API {
     return this.get(baseUrl + "user_info")
   }
 
+  static getAllSuppers() {
+    return this.get(baseUrl + "suppers")
+  }
+
   static getHostedSuppers(user) {
     return this.get(baseUrl + `/users/${user.userId}/hosted_suppers`);
   }

@@ -22,8 +22,14 @@ class App extends Component {
   state = {
     currentUser: {},
     loggedIn: false,
-    hostedSuppers: null,
+    hostedSuppers: [],
     attendingSuppers: [],
+    suppers: [],
+    address: "",
+    givenLocation: {
+      selectedAddressLngLat: "",
+      selectedAddress: "",
+    }
   }
 
   logIn = user => {
@@ -53,6 +59,7 @@ class App extends Component {
       userId: user.user_id
     },
     })
+    this.getAllSuppers()
     this.getHostedSuppers()
     this.getAttendedSuppers()
 
@@ -66,6 +73,11 @@ class App extends Component {
   getAttendedSuppers = () => {
     API.getAttendedSuppers(this.state.currentUser)
       .then(suppers => this.setState({attendingSuppers: suppers}))
+  }
+
+  getAllSuppers = () => {
+    API.getAllSuppers()
+      .then(suppers => this.setState({suppers}))
   }
 
   componentDidMount() {
@@ -83,7 +95,7 @@ class App extends Component {
       <div className="SUPPERCLUB">
           <NavBar currentUser={this.state.currentUser} logIn={this.logIn} logOut={this.logOut} loggedIn={this.state.loggedIn}/>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render={(props) => <Home address={this.state.address} givenLocation={this.state.givenLocation} {...props} />}/>
             <Route exact path="/new-supper" render={(props) => <NewSupperForm handleSubmit={this.handleNewSupperSubmit} handleSelect={this.handleSelect} createSupper={this.createSupper} currentUser={this.state.currentUser} /> } />
             <Route exact path="/profile" render={(props) => <Profile currentUser={this.state.currentUser} /> } />
             <Route exact path="/hosted-suppers" render={(props) => <HostedSuppers currentUser={this.state.currentUser} hostedSuppers={this.state.hostedSuppers}/> } />
