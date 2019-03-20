@@ -36,6 +36,7 @@ class App extends Component {
     hostedSuppers: [],
     attendingSuppers: [],
     suppers: [],
+    filteredSuppers: [],
     address: "",
     givenLocation: {
       lat: 0.0,
@@ -100,16 +101,27 @@ class App extends Component {
   }
 
   filteredSuppers = () => {
-    this.state.suppers.map(supper => {
+    this.state.suppers.forEach(supper => {
+
       const supperLatLng = {lat: supper.lat, lng: supper.lng}
-      // const supperGoogleLatLng = new google.maps.latLng(supperLatLng)
-      debugger
       const givenLatLng = {lat: this.state.givenLocation.lat, lng: this.state.givenLocation.lng}
 
-      // const distance = google.maps.geometry.spherical.computeDistanceBetween()
-
+      var R = 3959; // miles
+    	var dLat = (this.state.givenLocation.lat-supper.lat) * Math.PI / 180;
+    	var dLon = (this.state.givenLocation.lng-supper.lng) * Math.PI / 180;
+    	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    		Math.cos(supper.lat * Math.PI / 180 ) * Math.cos(this.state.givenLocation.lat * Math.PI / 180 ) *
+    		Math.sin(dLon/2) * Math.sin(dLon/2);
+    	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    	var d = R * c;
+    	console.log(d)
+      if (d <= 6) {
+        this.setState({filteredSuppers: [...this.state.filteredSuppers, supper]})
+      }
     })
   }
+
+
 
   handleSelect = address => {
     this.setState({
