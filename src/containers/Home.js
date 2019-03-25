@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/Home.css';
 import Explore from '../components/Explore'
 import HomePageSearchForm from '../components/HomePageSearchForm'
+import SearchedSuppers from './SearchedSuppers'
 
 
 export default class Home extends Component {
@@ -17,6 +18,10 @@ export default class Home extends Component {
             handleSelect={this.props.handleSelect}
             handleAddressChange={this.props.handleAddressChange}
             />
+        </div>
+        <div className="SearchResults">
+          <SearchedSuppers filteredSuppers={this.props.filteredSuppers} handleAttendClick={this.props.handleAttendClick} currentUser={this.props.currentUser} getAttendedSuppers={this.props.getAttendedSuppers}/>
+
         </div>
         <Explore />
       </div>

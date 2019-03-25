@@ -40,6 +40,18 @@ class API {
     .then(response => response.json())
   }
 
+  static createBooking(supper, user) {
+    fetch(baseUrl + `users/${user.userId}/attended_suppers`, {
+      headers: {"Content-Type": "application/json"},
+      method: 'POST',
+      body: JSON.stringify({
+        user_id: user.userId,
+        supper_id: supper.id,
+      })
+    })
+    .then(response => response.json())
+  }
+
   static validate() {
     return this.get(baseUrl + "validate");
   }

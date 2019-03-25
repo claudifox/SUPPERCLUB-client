@@ -8,44 +8,6 @@ import PlacesAutocomplete, {
 
 export default class HomePageSearchForm extends Component {
 
-  // state = {
-  //   address: "",
-  //   givenLocation: {
-  //     lat: 0.0,
-  //     lng: 0.0,
-  //     selectedAddress: "",
-  //   }
-  // }
-  //
-  // handleSelect = address => {
-  //   this.setState({
-  //     givenLocation: {
-  //       ...this.state.givenLocation,
-  //       selectedAddress: address
-  //     }
-  //   });
-  //   geocodeByAddress(address)
-  //     .then(results => getLatLng(results[0]))
-  //     .then(latLng => {
-  //       this.setState({
-  //         givenLocation: {
-  //           ...this.state.givenLocation,
-  //           lat: latLng.lat,
-  //           lng: latLng.lng
-  //       }
-  //       })
-  //       console.log('Success', latLng)
-  //       this.props.filteredSuppers()
-  //     })
-  //     .catch(error => console.error('Error', error));
-  //
-  // };
-  //
-  // handleAddressChange = address => {
-  //   this.setState({ address });
-  // };
-  //
-
   render() {
   return (
     <div className="SearchForm" >
