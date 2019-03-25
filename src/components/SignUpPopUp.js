@@ -9,6 +9,8 @@ export default class SignUpPopUp extends Component {
     first_name: "",
     last_name: "",
     email_address: "",
+    profile_picture: "",
+    description: "",
     password: ""
   }
 
@@ -25,7 +27,6 @@ export default class SignUpPopUp extends Component {
         alert('Email address already in use')
       } else {
         logIn(data)
-        history.push("/profile")
       }
     })
   }
@@ -38,6 +39,8 @@ export default class SignUpPopUp extends Component {
         <input className="input" type="text" name="first_name" placeholder="First Name" onChange={this.handleChange} />
         <input className="input" type="text" name="last_name" placeholder="Last Name" onChange={this.handleChange}  />
           <input className="input" type="text" name="email_address" placeholder="Email Address" onChange={this.handleChange} />
+          <input className="input" type="text" name="profile_picture" placeholder="Profile Picture URL" onChange={this.handleChange} />
+          <input className="input" type="text" name="description" placeholder="Tell Us About Yourself..." onChange={this.handleChange} />
           <input className="input" type="password" name="password" placeholder="Password" onChange={this.handleChange} />
           <input type="submit" value="Sign Up" />
         </form>

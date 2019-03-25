@@ -7,7 +7,6 @@ export default class SearchedSupperCard extends Component {
   handleAttendClick = event => {
     event.preventDefault()
     API.createBooking(this.props.supper, this.props.currentUser)
-    // this.props.getAttendedSuppers()
   }
 
   render() {

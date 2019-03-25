@@ -7,6 +7,7 @@ import {
 import './App.css';
 import NavBar from './containers/NavBar'
 import Home from './containers/Home'
+import LogInSignUpHome from './containers/LogInSignUpHome'
 import NewSupperForm from './containers/NewSupperForm'
 import API from './API.js';
 import Profile from './containers/Profile'
@@ -112,7 +113,17 @@ class App extends Component {
     	let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     	let d = R * c;
     	console.log(d)
-      if (d <= 6) {
+      if (d <= 12 && !(
+          this.state.attendingSuppers.find((asupper) => {
+              return asupper.id === supper.id
+          }))
+          && !(
+            this.state.hostedSuppers.find((asupper) => {
+              return asupper.id === supper.id
+            })
+          )
+         ) {
+
         this.setState({filteredSuppers: [...this.state.filteredSuppers, supper]})
       }
     })
@@ -161,6 +172,9 @@ class App extends Component {
       <div className="SUPPERCLUB">
           <NavBar currentUser={this.state.currentUser} logIn={this.logIn} logOut={this.logOut} loggedIn={this.state.loggedIn}/>
           <Switch>
+            <Route exact path="/signup" render={(props) =>
+              <LogInSignUpHome />
+            } />
             <Route exact path="/" render={(props) =>
               <Home
               address={this.state.address}
