@@ -35,6 +35,7 @@ class App extends Component {
     attendingSuppers: [],
     suppers: [],
     filteredSuppers: [],
+    exploreSuppers: [],
     address: "",
     givenLocation: {
       lat: 0.0,
@@ -95,8 +96,13 @@ class App extends Component {
 
   getAllSuppers = () => {
     API.getAllSuppers()
-      .then(suppers => this.setState({suppers}))
+      .then(suppers => {
+        this.setState({suppers})
+        const newSuppers = suppers.slice(-3)
+        this.setState({exploreSuppers: newSuppers})
+      })
   }
+
 
   filteredSuppers = () => {
     this.state.suppers.forEach(supper => {
@@ -186,6 +192,7 @@ class App extends Component {
               handleAttendClick={this.handleAttendClick}
               currentUser={this.state.currentUser}
               getAttendedSuppers={this.getAttendedSuppers}
+              exploreSuppers={this.state.exploreSuppers}
               {...props} />}/>
             <Route exact path="/new-supper" render={(props) =>
               <NewSupperForm

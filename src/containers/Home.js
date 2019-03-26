@@ -23,7 +23,7 @@ export default class Home extends Component {
           <SearchedSuppers filteredSuppers={this.props.filteredSuppers} handleAttendClick={this.props.handleAttendClick} currentUser={this.props.currentUser} getAttendedSuppers={this.props.getAttendedSuppers}/>
 
         </div>
-        <Explore />
+        <Explore exploreSuppers={this.props.exploreSuppers}/>
       </div>
     )
   }
