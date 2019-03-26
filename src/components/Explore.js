@@ -10,7 +10,7 @@ export default class SearchedSuppers extends Component {
     return (
       <div className="Explore">
         <h3 className="title">EXPLORE SUPPERCLUB</h3>
-        <div>
+        <div className="ExploreGrid">
         {this.props.exploreSuppers.map(supper => <SearchedSupperCard key={supper.id} supper={supper} currentUser={this.props.currentUser} />)}
         </div>
       </div>

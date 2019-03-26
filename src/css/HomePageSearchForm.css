@@ -4,14 +4,15 @@
 }
 
 input[type=text], select {
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-display: inline-block;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
+  font-family: 'Lato';
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
 
 input[type=submit] {
   width: 25%;
@@ -39,4 +40,14 @@ input[type=submit] {
   font-size: 22px;
   color: #4A4A4A;
   text-align: left;
+}
+
+.autocomplete-dropdown-container {
+  font-family: 'Lato';
+  font-size: 12px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+
 }

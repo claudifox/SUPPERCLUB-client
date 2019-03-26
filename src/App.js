@@ -18,7 +18,6 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 
-
 class App extends Component {
 
   state = {
@@ -32,7 +31,11 @@ class App extends Component {
     },
     loggedIn: false,
     hostedSuppers: [],
+    pastHostedSuppers: [],
+    futureHostingSuppers: [],
     attendingSuppers: [],
+    pastAttendedSuppers: [],
+    futureAttendingSuppers: [],
     suppers: [],
     filteredSuppers: [],
     exploreSuppers: [],
@@ -82,16 +85,39 @@ class App extends Component {
     this.getHostedSuppers()
     this.getAttendedSuppers()
 
+
   }
 
   getHostedSuppers = () => {
     API.getHostedSuppers(this.state.currentUser)
-      .then(suppers => this.setState({hostedSuppers: suppers}))
+      .then(suppers => {
+        this.setState({hostedSuppers: suppers})
+        suppers.forEach(supper => {
+          let dateToday = new Date()
+          let supperDate = new Date(supper.date)
+          if (supperDate >= dateToday) {
+            this.setState({futureHostingSuppers: [...this.state.futureHostingSuppers, supper]})
+          } else {
+            this.setState({pastHostedSuppers: [...this.state.pastHostedSuppers, supper]})
+          }
+        })
+      })
   }
 
   getAttendedSuppers = () => {
     API.getAttendedSuppers(this.state.currentUser)
-      .then(suppers => this.setState({attendingSuppers: suppers}))
+      .then(suppers => {
+        this.setState({attendingSuppers: suppers})
+        suppers.map(supper => {
+          let dateToday = new Date()
+          let supperDate = new Date(supper.date)
+          if (supperDate >= dateToday) {
+            this.setState({futureAttendingSuppers: [...this.state.futureAttendingSuppers, supper]})
+          } else {
+            this.setState({pastAttendedSuppers: [...this.state.pastAttendedSuppers, supper]})
+          }
+        })
+      })
   }
 
   getAllSuppers = () => {
@@ -102,7 +128,6 @@ class App extends Component {
         this.setState({exploreSuppers: newSuppers})
       })
   }
-
 
   filteredSuppers = () => {
     this.state.suppers.forEach(supper => {

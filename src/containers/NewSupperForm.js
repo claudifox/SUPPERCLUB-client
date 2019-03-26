@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../css/NewSupperForm.css';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -68,11 +69,11 @@ export default class NewSupperForm extends Component {
         <h3 className="title">Want to host your own supper?</h3>
         <form method="POST" onSubmit={this.handleNewSupperSubmit}>
           <label className="label">NAME</label>
-          <input className="input" type="text" name="name" value={this.state.newSupper.name} onChange={this.handleChange} autoFocus/>
+          <input className="input" type="text" placeholder="Make it stand out ..." name="name" value={this.state.newSupper.name} onChange={this.handleChange} autoFocus/>
           <label className="label">DESCRIPTION</label>
-          <input className="input" type="text" name="description" value={this.state.newSupper.description} onChange={this.handleChange} />
+          <input className="input" type="text" placeholder="What are you making? Is it Veggie or Vegan? Will Booze be provided? Tell your potential guests every detail!" name="description" value={this.state.newSupper.description} onChange={this.handleChange} />
           <label className="label">PHOTO</label>
-          <input className="input" type="text" name="picture" onChange={this.handleChange} />
+          <input className="input" type="text" placeholder="Take a stellar snap!" name="picture" onChange={this.handleChange} />
           <label className="label">DATE </label>
           <input className="input" type="date" name="date" onChange={this.handleChange} />
           <label className="label">TIME </label>
