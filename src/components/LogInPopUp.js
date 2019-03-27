@@ -3,10 +3,7 @@ import { withRouter } from 'react-router-dom';
 import '../css/PopUp.css';
 import API from '../API.js';
 
-
 export default class LogInPopUp extends Component {
-
-
 
     state = {
     email_address: "",
@@ -25,7 +22,6 @@ export default class LogInPopUp extends Component {
         alert('Email address/password invalid')
       } else {
         this.props.logIn(data)
-
       }
     })
   }

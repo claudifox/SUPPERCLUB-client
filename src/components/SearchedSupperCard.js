@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import API from '../API.js'
-
+// import Clock from '../images/Clock.jpg'
+// import Calendar from '../images/Calendar.jpg'
 
 export default class SearchedSupperCard extends Component {
 
   handleAttendClick = event => {
     event.preventDefault()
     API.createBooking(this.props.supper, this.props.currentUser)
+    this.props.history.push('/suppers')
   }
 
   render() {

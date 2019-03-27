@@ -7,7 +7,7 @@ import SearchedSuppers from './SearchedSuppers'
 
 export default class Home extends Component {
 
-  
+
 
   render() {
     return (
@@ -22,10 +22,10 @@ export default class Home extends Component {
             />
         </div>
         <div className="SearchResults">
-          <SearchedSuppers filteredSuppers={this.props.filteredSuppers} handleAttendClick={this.props.handleAttendClick} currentUser={this.props.currentUser} getAttendedSuppers={this.props.getAttendedSuppers}/>
+          <SearchedSuppers filteredSuppers={this.props.filteredSuppers} handleAttendClick={this.props.handleAttendClick} currentUser={this.props.currentUser} getAttendedSuppers={this.props.getAttendedSuppers} history={this.props.history}/>
 
         </div>
-        <Explore exploreSuppers={this.props.exploreSuppers} currentUser={this.props.currentUser} AttendingSuppers={this.props.attendedSuppers}/>
+        <Explore exploreSuppers={this.props.exploreSuppers} currentUser={this.props.currentUser} AttendingSuppers={this.props.attendedSuppers} history={this.props.history}/>
       </div>
     )
   }

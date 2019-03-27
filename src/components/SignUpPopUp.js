@@ -22,8 +22,8 @@ export default class SignUpPopUp extends Component {
     event.preventDefault()
     const user = this.state
     API.createUser(user).then(data => {
-      debugger
       if (data.error) {
+        // debugger
         alert('Email address already in use')
       } else {
         this.props.logIn(data)
@@ -34,7 +34,7 @@ export default class SignUpPopUp extends Component {
 
   render() {
     return (
-        <form onSubmit={this.handleLogInSubmit}>
+        <form onSubmit={this.handleSignUpSubmit}>
         <input className="input" type="text" name="first_name" placeholder="First Name" onChange={this.handleChange} />
         <input className="input" type="text" name="last_name" placeholder="Last Name" onChange={this.handleChange}  />
           <input className="input" type="text" name="email_address" placeholder="Email Address" onChange={this.handleChange} />

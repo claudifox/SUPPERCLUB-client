@@ -1,5 +1,7 @@
 // /* global google */
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
 import {
   Route,
   Switch,
@@ -55,6 +57,7 @@ class App extends Component {
       loggedIn: true
     })
     this.getUserInfo(user)
+    this.props.history.push('/search')
   }
 
   logOut = user => {
@@ -110,7 +113,7 @@ class App extends Component {
     API.getAttendedSuppers(this.state.currentUser)
       .then(suppers => {
         this.setState({attendingSuppers: suppers})
-        suppers.map(supper => {
+        suppers.forEach(supper => {
           let dateToday = new Date()
           let supperDate = new Date(supper.date)
           if (supperDate >= dateToday) {
@@ -146,10 +149,8 @@ class App extends Component {
 
   filteredSuppers = () => {
     this.state.suppers.forEach(supper => {
-
-      const supperLatLng = {lat: supper.lat, lng: supper.lng}
-      const givenLatLng = {lat: this.state.givenLocation.lat, lng: this.state.givenLocation.lng}
-
+      // const supperLatLng = {lat: supper.lat, lng: supper.lng}
+      // const givenLatLng = {lat: this.state.givenLocation.lat, lng: this.state.givenLocation.lng}
       let R = 3959; // miles
     	let dLat = (this.state.givenLocation.lat-supper.lat) * Math.PI / 180;
     	let dLon = (this.state.givenLocation.lng-supper.lng) * Math.PI / 180;
@@ -169,7 +170,6 @@ class App extends Component {
             })
           )
          ) {
-
         this.setState({filteredSuppers: [...this.state.filteredSuppers, supper]})
       }
     })
@@ -196,7 +196,6 @@ class App extends Component {
         this.filteredSuppers()
       })
       .catch(error => console.error('Error', error));
-
   };
 
   handleAddressChange = address => {
@@ -209,6 +208,7 @@ class App extends Component {
         this.logOut()
       } else {
         this.logIn(userData)
+        this.props.history.push('/search')
       }
     })
   }
@@ -227,39 +227,40 @@ class App extends Component {
             } />
             <Route exact path="/search" render={(props) =>
               <Home
-              address={this.state.address}
-              givenLocation={this.state.givenLocation}
-              filteredSuppers={this.filteredSuppers}
-              handleSelect={this.handleSelect}
-              handleAddressChange={this.handleAddressChange}
-              filteredSuppers={this.state.filteredSuppers}
-              handleAttendClick={this.handleAttendClick}
-              currentUser={this.state.currentUser}
-              getAttendedSuppers={this.getAttendedSuppers}
-              exploreSuppers={this.state.exploreSuppers}
-              attendingSuppers={this.state.attendedSuppers}
-              {...props} />}/>
+                address={this.state.address}
+                givenLocation={this.state.givenLocation}
+                filteredSuppers={this.filteredSuppers}
+                handleSelect={this.handleSelect}
+                handleAddressChange={this.handleAddressChange}
+                filteredSuppers={this.state.filteredSuppers}
+                handleAttendClick={this.handleAttendClick}
+                currentUser={this.state.currentUser}
+                getAttendedSuppers={this.getAttendedSuppers}
+                exploreSuppers={this.state.exploreSuppers}
+                attendingSuppers={this.state.attendedSuppers}
+                history={this.props.history}
+                {...props} />}/>
             <Route exact path="/new-supper" render={(props) =>
               <NewSupperForm
-              handleSubmit={this.handleNewSupperSubmit}
-              handleSelect={this.handleSelect}
-              createSupper={this.createSupper}
-              currentUser={this.state.currentUser} /> } />
+                handleSubmit={this.handleNewSupperSubmit}
+                handleSelect={this.handleSelect}
+                createSupper={this.createSupper}
+                currentUser={this.state.currentUser} /> } />
             <Route exact path="/profile" render={(props) =>
               <Profile
-              currentUser={this.state.currentUser} /> } />
+                currentUser={this.state.currentUser} /> } />
             <Route exact path="/hosted-suppers" render={(props) =>
               <HostedSuppers
-              currentUser={this.state.currentUser}
-              hostedSuppers={this.state.hostedSuppers}
-              pastHostedSuppers={this.state.pastHostedSuppers}
-              futureHostingSuppers={this.state.futureHostingSuppers}/> } />
+                currentUser={this.state.currentUser}
+                hostedSuppers={this.state.hostedSuppers}
+                pastHostedSuppers={this.state.pastHostedSuppers}
+                futureHostingSuppers={this.state.futureHostingSuppers}/> } />
             <Route exact path="/attending-suppers" render={(props) =>
               <AttendingSuppers
-              currentUser={this.state.currentUser}
-              attendingSuppers={this.state.attendingSuppers}
-              pastAttendedSuppers={this.state.pastAttendedSuppers}
-              futureAttendingSuppers={this.state.futureAttendingSuppers}/> } />
+                currentUser={this.state.currentUser}
+                attendingSuppers={this.state.attendingSuppers}
+                pastAttendedSuppers={this.state.pastAttendedSuppers}
+                futureAttendingSuppers={this.state.futureAttendingSuppers}/> } />
             <Route exact path="/suppers" render={(props) =>
               <Suppers
                 pastHostedSuppers={this.state.pastHostedSuppers}
@@ -274,4 +275,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
