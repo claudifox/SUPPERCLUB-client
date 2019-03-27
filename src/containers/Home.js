@@ -7,6 +7,8 @@ import SearchedSuppers from './SearchedSuppers'
 
 export default class Home extends Component {
 
+  
+
   render() {
     return (
       <div className="HomePage">
@@ -23,7 +25,7 @@ export default class Home extends Component {
           <SearchedSuppers filteredSuppers={this.props.filteredSuppers} handleAttendClick={this.props.handleAttendClick} currentUser={this.props.currentUser} getAttendedSuppers={this.props.getAttendedSuppers}/>
 
         </div>
-        <Explore exploreSuppers={this.props.exploreSuppers}/>
+        <Explore exploreSuppers={this.props.exploreSuppers} currentUser={this.props.currentUser} AttendingSuppers={this.props.attendedSuppers}/>
       </div>
     )
   }

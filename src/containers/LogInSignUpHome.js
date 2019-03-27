@@ -7,8 +7,15 @@ export default class LogInSignUpHome extends Component {
 
   render() {
     return (
-      <div >
-      </div>
+      <img src={HeroImage} style={{
+        width: '100%',
+        height: 'inherit',
+      backgroundSize: 'cover',
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: '1 1 auto'}}/>
     )
   }
 }

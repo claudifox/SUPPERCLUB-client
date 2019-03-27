@@ -15,8 +15,7 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <div className="NavBar">
-        <ul>
+        <ul className="NavBar">
           <li>
             <Link to="/" style={{ textDecoration: 'none' }}>
               <h1 className="logo"  >SUPPERCLUB</h1>
@@ -25,18 +24,18 @@ export default class NavBar extends Component {
           {this.props.loggedIn ?
             <ul>
               <li>
+              <Link to="/search" style={{ textDecoration: 'none' }}>
+              <button className="NavBarLink"  >FIND A SUPPER</button>
+              </Link>
+              </li>
+              <li>
               <Link to="/new-supper" style={{ textDecoration: 'none' }}>
               <button className="NavBarLink"  >HOST A SUPPER</button>
               </Link>
               </li>
               <li>
-              <Link to="/hosted-suppers">
-              <button className="NavBarLink">HOSTING</button>
-              </Link>
-              </li>
-              <li>
-              <Link to="/attending-suppers">
-              <button className="NavBarLink">ATTENDING</button>
+              <Link to="/suppers">
+              <button className="NavBarLink">SUPPERS</button>
               </Link>
               </li>
               <li>
@@ -85,7 +84,7 @@ export default class NavBar extends Component {
               </div>
           }
         </ul>
-      </div>
+
     )
   }
 }

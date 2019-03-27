@@ -20,13 +20,13 @@ export default class SignUpPopUp extends Component {
 
   handleSignUpSubmit = event => {
     event.preventDefault()
-    const { logIn, history } = this.props
     const user = this.state
-    API.create(user).then(data => {
+    API.createUser(user).then(data => {
+      debugger
       if (data.error) {
         alert('Email address already in use')
       } else {
-        logIn(data)
+        this.props.logIn(data)
       }
     })
   }
@@ -34,7 +34,6 @@ export default class SignUpPopUp extends Component {
 
   render() {
     return (
-      <div className="Form" >
         <form onSubmit={this.handleLogInSubmit}>
         <input className="input" type="text" name="first_name" placeholder="First Name" onChange={this.handleChange} />
         <input className="input" type="text" name="last_name" placeholder="Last Name" onChange={this.handleChange}  />
@@ -44,7 +43,6 @@ export default class SignUpPopUp extends Component {
           <input className="input" type="password" name="password" placeholder="Password" onChange={this.handleChange} />
           <input type="submit" value="Sign Up" />
         </form>
-      </div>
     )
   }
 }
