@@ -11,6 +11,7 @@ import LogInSignUpHome from './containers/LogInSignUpHome'
 import NewSupperForm from './containers/NewSupperForm'
 import API from './API.js';
 import Profile from './containers/Profile'
+import Suppers from './containers/Suppers'
 import HostedSuppers from './containers/HostedSuppers'
 import AttendingSuppers from './containers/AttendingSuppers'
 import PlacesAutocomplete, {
@@ -38,6 +39,7 @@ class App extends Component {
     futureAttendingSuppers: [],
     suppers: [],
     filteredSuppers: [],
+    newSuppers: [],
     exploreSuppers: [],
     address: "",
     givenLocation: {
@@ -81,9 +83,9 @@ class App extends Component {
       userId: user.user_id
     },
     })
-    this.getAllSuppers()
     this.getHostedSuppers()
     this.getAttendedSuppers()
+    this.getAllSuppers()
 
 
   }
@@ -124,10 +126,23 @@ class App extends Component {
     API.getAllSuppers()
       .then(suppers => {
         this.setState({suppers})
-        const newSuppers = suppers.slice(-3)
-        this.setState({exploreSuppers: newSuppers})
+        // debugger
+        suppers.forEach(supper => {
+          // debugger
+          if(!(this.state.attendingSuppers.find((asupper) => {
+            return asupper.id === supper.id
+          })) &&
+        !(this.state.hostedSuppers.find((asupper) => {
+          return asupper.id === supper.id
+        }))) {
+          this.setState({newSuppers: [...this.state.newSuppers, supper]})
+        }
+        let exploreSuppers = this.state.newSuppers.slice(-3)
+        this.setState({exploreSuppers})
       })
-  }
+  })
+}
+
 
   filteredSuppers = () => {
     this.state.suppers.forEach(supper => {
@@ -144,7 +159,7 @@ class App extends Component {
     	let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     	let d = R * c;
     	console.log(d)
-      if (d <= 12 && !(
+      if (d <= 5 && !(
           this.state.attendingSuppers.find((asupper) => {
               return asupper.id === supper.id
           }))
@@ -201,12 +216,16 @@ class App extends Component {
   render() {
     return (
       <div className="SUPPERCLUB">
-          <NavBar currentUser={this.state.currentUser} logIn={this.logIn} logOut={this.logOut} loggedIn={this.state.loggedIn}/>
+          <NavBar
+            currentUser={this.state.currentUser}
+            logIn={this.logIn}
+            logOut={this.logOut}
+            loggedIn={this.state.loggedIn}/>
           <Switch>
-            <Route exact path="/signup" render={(props) =>
+            <Route exact path="/" render={(props) =>
               <LogInSignUpHome />
             } />
-            <Route exact path="/" render={(props) =>
+            <Route exact path="/search" render={(props) =>
               <Home
               address={this.state.address}
               givenLocation={this.state.givenLocation}
@@ -218,6 +237,7 @@ class App extends Component {
               currentUser={this.state.currentUser}
               getAttendedSuppers={this.getAttendedSuppers}
               exploreSuppers={this.state.exploreSuppers}
+              attendingSuppers={this.state.attendedSuppers}
               {...props} />}/>
             <Route exact path="/new-supper" render={(props) =>
               <NewSupperForm
@@ -231,11 +251,23 @@ class App extends Component {
             <Route exact path="/hosted-suppers" render={(props) =>
               <HostedSuppers
               currentUser={this.state.currentUser}
-              hostedSuppers={this.state.hostedSuppers}/> } />
+              hostedSuppers={this.state.hostedSuppers}
+              pastHostedSuppers={this.state.pastHostedSuppers}
+              futureHostingSuppers={this.state.futureHostingSuppers}/> } />
             <Route exact path="/attending-suppers" render={(props) =>
               <AttendingSuppers
               currentUser={this.state.currentUser}
-              attendingSuppers={this.state.attendingSuppers}/> } />
+              attendingSuppers={this.state.attendingSuppers}
+              pastAttendedSuppers={this.state.pastAttendedSuppers}
+              futureAttendingSuppers={this.state.futureAttendingSuppers}/> } />
+            <Route exact path="/suppers" render={(props) =>
+              <Suppers
+                pastHostedSuppers={this.state.pastHostedSuppers}
+                futureHostingSuppers={this.state.futureHostingSuppers}
+                pastAttendedSuppers={this.state.pastAttendedSuppers}
+                futureAttendingSuppers={this.state.futureAttendingSuppers}
+              />
+            } />
           </Switch>
       </div>
     );
