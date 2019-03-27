@@ -4,13 +4,13 @@ import SupperCard from '../components/SupperCard'
 
 
 
-export default class AttendingSuppers extends Component {
+export default class AttendedSuppers extends Component {
 
 
   render() {
     return (
       <div>
-      {this.props.attendingSuppers.map(supper => <SupperCard key={supper.id} supper={supper} />)}
+      {this.props.attendedSuppers.map(supper => <SupperCard key={supper.id} supper={supper} />)}
       </div>
     )
   }

@@ -7,7 +7,9 @@ export default class SearchedSuppers extends Component {
   render() {
     return (
       <div>
-      {this.props.filteredSuppers.map(supper => <SearchedSupperCard key={supper.id} supper={supper} currentUser={this.props.currentUser} />)}
+      <p>{this.props.filteredSuppers.length} suppers found</p>
+      {this.props.filteredSuppers.map(supper =>
+        <SearchedSupperCard key={supper.id} supper={supper} currentUser={this.props.currentUser} />)}
       </div>
     )
   }
