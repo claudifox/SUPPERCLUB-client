@@ -22,6 +22,16 @@ class API {
     }).then(response => response.json());
   }
 
+  static editUser(user) {
+    return fetch(baseUrl + `users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ user })
+    }).then(response => response.json());
+  }
+
   static createSupper(supper, user) {
     fetch(baseUrl + `users/${user.userId}/hosted_suppers`, {
       headers: {"Content-Type": "application/json"},

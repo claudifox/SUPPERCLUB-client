@@ -1,0 +1,300 @@
+body {
+  margin: 0;
+  }
+
+
+
+ul {
+  background: #D60C54;
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 1;
+  overflow: hidden;
+  z-index: 100;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  align-items: center;
+}
+
+
+.column {
+  float: left;
+  padding: 10px;
+
+}
+
+.column.search {
+  width: 25%;
+
+}
+
+.column.results {
+  width: 60%;
+
+}
+
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+.logo {
+  font-family: AvenirNext-Bold;
+  font-size: 40px;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.NavBarLink {
+font-family: AvenirNext-DemiBold;
+font-size: 20px;
+color: #FFFFFF;
+letter-spacing: 0;
+text-align: center;
+background: #D60C54;
+padding: 40px;
+border: #FFFFFF;
+outline: none;
+
+}
+
+.SmallNavBarLink {
+  font-family: AvenirNext-Medium;
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+  background: #D60C54;
+  padding: 20px;
+  border: #FFFFFF;
+  outline: 1px;
+}
+
+.SupperContainer {
+  position: relative;
+  width: 90%;
+  /* margin: 0 auto; */
+}
+
+.SupperList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 96%;
+  /* margin: 0 auto; */
+  align-content: center;
+  margin-bottom: 3em;
+}
+
+.exploreTitle {
+  font-family: AvenirNext-Bold;
+  font-size: 24px;
+  color: #4A4A4A;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.ExploreList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 96%;
+  margin-bottom: 3em;
+}
+
+.SearchForm {
+  margin-left: 20px;
+  border-radius: 5px;
+}
+
+
+input[type=text], select {
+  font-family: AvenirNext-Regular;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 14px;
+
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
+
+input[type=submit] {
+  width: 25%;
+  background-color: #D60C54;
+  color: white;
+  font-family: AvenirNext-Medium;
+  font-size: 16px;
+  padding: 7px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  float: right;
+
+}
+
+.label {
+  color: #4A4A4A;
+  font-family: AvenirNext-DemiBold;
+  font-size: 16px;
+}
+
+
+.title {
+  font-family: AvenirNext-Bold;
+  font-size: 24px;
+  color: #4A4A4A;
+  text-align: left;
+}
+
+.autocomplete-dropdown-container {
+  font-family: AvenirNext-Regular;
+  font-size: 16px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+.LogInForm {
+  background: #FAFAFA;
+  border: 1px solid #979797;
+  border-radius: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 20px;
+  font-family: AvenirNext-Regular;
+  font-size: 14px;
+  margin: 8px 0 auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.NewSupperEditForm {
+  /* When on large screen make width smaller */
+  width: 50%;
+  margin: 0 auto;
+}
+
+.Profile {
+  padding: 50px;
+  font-family: AvenirNext-Medium;
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.SupperItem {
+  /* padding: 1em; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 0.05em;
+  width: 325px;
+  position: relative;
+  border-radius: 5px;
+  margin: 50px;
+  margin-bottom: 1em;
+  margin-top: 2em;
+  background-color: white;
+  height: 425px
+}
+
+.supperImage {
+  object-fit: cover;
+  width: 100%;
+  height: 175px;
+  border-style: solid;
+  border-width: 0.05em;
+}
+
+
+.SupperItem h3 {
+  color: #4A4A4A;
+  font-family: AvenirNext-DemiBold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.icon {
+  height: 30px;
+  padding-right: 10px;
+  padding-left: 25px;
+}
+
+.DateTimeAddress {
+  font-family: AvenirNext-Regular;
+  font-size: 14px;
+  text-align: inherit;
+  align-items: center;
+  display: flex;
+}
+
+.AttendButton {
+  width: 75%;
+  background-color: #D60C54;
+  color: white;
+  font-family: AvenirNext-Medium;
+  font-size: 16px;
+  padding: 7px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 5px;
+  left: 34.375px;
+  text-align: center;
+}
+
+.SearchBtn {
+  text-align: center;
+}
+
+
+.NavBarLinks {
+  float: right;
+}
+
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./containers/HeroImage.jpg");
+
+  /* Set a specific height */
+  height: 100%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  font-family: AvenirNext-DemiBold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+#root {
+  height: 100vh;
+}
+
+.SUPPERCLUB {
+  height: 100%;
+}

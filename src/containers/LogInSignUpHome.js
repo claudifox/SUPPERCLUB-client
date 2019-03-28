@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 // import '../css/Home.css';
-import HeroImage from '../images/HeroImage.jpg'
+import HeroImage from './HeroImage.jpg'
 
 
 export default class LogInSignUpHome extends Component {
 
   render() {
     return (
-      <img src={HeroImage} style={{
-        width: '100%',
-        height: 'inherit',
-      backgroundSize: 'cover',
-      position: 'relative',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flex: '1 1 auto'}}/>
+      <div className="hero-image" >
+        <div className="hero-text">
+          <h1>Welcome to SUPPERCLUB</h1>
+          <p>The only way to find new and exciting people in your city over a shared love of food!</p>
+        </div>
+      </div>
     )
   }
 }

@@ -13,11 +13,18 @@ export default class SearchedSupperCard extends Component {
 
   render() {
     return (
-      <div className="card">
-        <img className="supperImage" src={this.props.supper.picture} alt="supper"/>
+      <div className="SupperItem">
+        <img className="supperImage" src={this.props.supper.picture} alt={this.props.supper.name}/>
         <h3>{this.props.supper.name} </h3>
-        <p>{this.props.supper.date}{this.props.supper.time}</p>
-        <button onClick={this.handleAttendClick}>Attend Supper</button>
+        <p className="DateTimeAddress">
+          <img className="icon" src="https://img.icons8.com/wired/50/000000/calendar.png"/>
+          {this.props.supper.date}
+        </p>
+        <p className="DateTimeAddress">
+          <img className="icon" src="https://img.icons8.com/wired/50/000000/clock.png"/>
+          {this.props.supper.time}
+        </p>
+        <button className="AttendButton" onClick={this.handleAttendClick}>Attend Supper</button>
       </div>
     )
   }

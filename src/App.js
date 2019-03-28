@@ -12,7 +12,7 @@ import Home from './containers/Home'
 import LogInSignUpHome from './containers/LogInSignUpHome'
 import NewSupperForm from './containers/NewSupperForm'
 import API from './API.js';
-import Profile from './containers/Profile'
+import ProfileSideBar from './components/ProfileSideBar'
 import Suppers from './containers/Suppers'
 import HostedSuppers from './containers/HostedSuppers'
 import AttendingSuppers from './containers/AttendingSuppers'
@@ -140,7 +140,7 @@ class App extends Component {
         }))) {
           this.setState({newSuppers: [...this.state.newSuppers, supper]})
         }
-        let exploreSuppers = this.state.newSuppers.slice(-3)
+        let exploreSuppers = this.state.newSuppers.slice(-4)
         this.setState({exploreSuppers})
       })
   })
@@ -148,6 +148,7 @@ class App extends Component {
 
 
   filteredSuppers = () => {
+    const filteredSuppers = []
     this.state.suppers.forEach(supper => {
       // const supperLatLng = {lat: supper.lat, lng: supper.lng}
       // const givenLatLng = {lat: this.state.givenLocation.lat, lng: this.state.givenLocation.lng}
@@ -170,13 +171,20 @@ class App extends Component {
             })
           )
          ) {
-        this.setState({filteredSuppers: [...this.state.filteredSuppers, supper]})
+           return this.state.filteredSuppers.includes(supper) ? null : filteredSuppers.push(supper)
       }
     })
+    this.setState({filteredSuppers})
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    this.filteredSuppers()
   }
 
   handleSelect = address => {
     this.setState({
+      address: address,
       givenLocation: {
         ...this.state.givenLocation,
         selectedAddress: address
@@ -193,13 +201,15 @@ class App extends Component {
         }
         })
         console.log('Success', latLng)
-        this.filteredSuppers()
       })
       .catch(error => console.error('Error', error));
   };
 
   handleAddressChange = address => {
-    this.setState({ address });
+    this.setState({
+      address: address,
+      filteredSuppers: [],
+     });
   };
 
   componentDidMount() {
@@ -231,6 +241,7 @@ class App extends Component {
                 givenLocation={this.state.givenLocation}
                 filteredSuppers={this.filteredSuppers}
                 handleSelect={this.handleSelect}
+                handleSubmit={this.handleSubmit}
                 handleAddressChange={this.handleAddressChange}
                 filteredSuppers={this.state.filteredSuppers}
                 handleAttendClick={this.handleAttendClick}
@@ -242,13 +253,15 @@ class App extends Component {
                 {...props} />}/>
             <Route exact path="/new-supper" render={(props) =>
               <NewSupperForm
-                handleSubmit={this.handleNewSupperSubmit}
                 handleSelect={this.handleSelect}
                 createSupper={this.createSupper}
                 currentUser={this.state.currentUser} /> } />
             <Route exact path="/profile" render={(props) =>
-              <Profile
-                currentUser={this.state.currentUser} /> } />
+              <ProfileSideBar
+                currentUser={this.state.currentUser}
+                history={this.props.history}
+                getUserInfo={this.getUserInfo}
+                /> } />
             <Route exact path="/hosted-suppers" render={(props) =>
               <HostedSuppers
                 currentUser={this.state.currentUser}

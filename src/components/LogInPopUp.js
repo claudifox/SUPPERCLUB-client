@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
-import '../css/PopUp.css';
 import API from '../API.js';
 
 export default class LogInPopUp extends Component {

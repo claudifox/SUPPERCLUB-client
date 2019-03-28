@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import '../css/Explore.css';
 import SearchedSupperCard from '../components/SearchedSupperCard'
 
 
@@ -8,11 +7,11 @@ export default class SearchedSuppers extends Component {
 
   render() {
     return (
-      <div className="Explore">
-        <h3 className="title">EXPLORE SUPPERCLUB</h3>
-        <div className="ExploreGrid">
-        {this.props.exploreSuppers.map(supper => <SearchedSupperCard key={supper.id} supper={supper} currentUser={this.props.currentUser} attendingSuppers={this.props.attendingSuppers} history={this.props.history} />)}
-        </div>
+      <div>
+          <div className="ExploreList" >
+            <h3 className="exploreTitle">EXPLORE SUPPERCLUBS</h3>
+            {this.props.exploreSuppers.map(supper => <SearchedSupperCard key={supper.id} supper={supper} currentUser={this.props.currentUser} attendingSuppers={this.props.attendingSuppers} history={this.props.history} />)}
+          </div>
       </div>
     )
   }

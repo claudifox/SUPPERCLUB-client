@@ -36,10 +36,10 @@ export default class Suppers extends Component {
     return (
       <div>
         <ul>
-          <li name="hosted" onClick={this.handleClick}>Hosted</li>
-          <li name="hosting" onClick={this.handleClick}>Hosting</li>
-          <li name="attended" onClick={this.handleClick}>Attended</li>
-          <li name="attending" onClick={this.handleClick}>Attending</li>
+          <li name="hosted" className="SmallNavBarLink" onClick={this.handleClick}>Hosted</li>
+          <li name="hosting" className="SmallNavBarLink" onClick={this.handleClick}>Hosting</li>
+          <li name="attended" className="SmallNavBarLink" onClick={this.handleClick}>Attended</li>
+          <li name="attending" className="SmallNavBarLink" onClick={this.handleClick}>Attending</li>
         </ul>
 
         <div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/NavBar.css';
 import Popup from 'reactjs-popup'
 import LogInPopUp from '../components/LogInPopUp'
 import SignUpPopUp from '../components/SignUpPopUp'
@@ -22,7 +21,7 @@ export default class NavBar extends Component {
             </Link>
           </li>
           {this.props.loggedIn ?
-            <ul>
+            <ul className="NavBarLinks">
               <li>
               <Link to="/search" style={{ textDecoration: 'none' }}>
               <button className="NavBarLink"  >FIND A SUPPER</button>
@@ -35,7 +34,7 @@ export default class NavBar extends Component {
               </li>
               <li>
               <Link to="/suppers">
-              <button className="NavBarLink">SUPPERS</button>
+              <button className="NavBarLink">MY SUPPERS</button>
               </Link>
               </li>
               <li>

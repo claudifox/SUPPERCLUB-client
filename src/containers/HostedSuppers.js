@@ -8,8 +8,10 @@ export default class HostedSuppers extends Component {
 
   render() {
     return (
-      <div>
+      <div className="SupperContainer">
+        <div className="SupperList">
         {this.props.hostedSuppers.map(supper => <SupperCard key={supper.id} supper={supper} />)}
+        </div>
       </div>
     )
   }

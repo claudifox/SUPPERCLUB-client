@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../css/NewSupperForm.css';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -32,6 +31,7 @@ export default class NewSupperForm extends Component {
 
     handleSelect = address => {
       this.setState({
+        address: address,
         newSupper: {
           ...this.state.newSupper,
           selectedAddress: address
@@ -65,14 +65,14 @@ export default class NewSupperForm extends Component {
 
   render() {
     return (
-      <div className="NewSupperForm" >
+      <div className="NewSupperEditForm" >
         <h3 className="title">Want to host your own supper?</h3>
         <form method="POST" onSubmit={this.handleNewSupperSubmit}>
-          <label className="label">NAME</label>
-          <input className="input" type="text" placeholder="Make it stand out ..." name="name" value={this.state.newSupper.name} onChange={this.handleChange} autoFocus/>
+          <label className="label">NAME OF SUPPER (32 Characters Max.)</label>
+          <input className="input" maxLength="33" type="text" placeholder="Make it stand out ..." name="name" value={this.state.newSupper.name} onChange={this.handleChange} autoFocus/>
           <label className="label">DESCRIPTION</label>
-          <input className="input" type="text" placeholder="What are you making? Is it Veggie or Vegan? Will Booze be provided? Tell your potential guests every detail!" name="description" value={this.state.newSupper.description} onChange={this.handleChange} />
-          <label className="label">PHOTO</label>
+          <textarea className="input" type="text" placeholder="What are you making? Is it Veggie or Vegan? Will Booze be provided? Tell your potential guests every detail!" name="description" value={this.state.newSupper.description} onChange={this.handleChange} />
+          <label className="label">PHOTO (URL)</label>
           <input className="input" type="text" placeholder="Take a stellar snap!" name="picture" onChange={this.handleChange} />
           <label className="label">DATE </label>
           <input className="input" type="date" name="date" onChange={this.handleChange} />
@@ -105,7 +105,7 @@ export default class NewSupperForm extends Component {
                           className,
                         })}
                       >
-                        <span>{suggestion.description}</span>
+                      <span>{suggestion.description.toLowerCase().includes('uk') ? suggestion.description : ""}</span>
                       </div>
                     );
                   })}

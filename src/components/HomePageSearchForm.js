@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../css/HomePageSearchForm.css';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -12,7 +11,7 @@ export default class HomePageSearchForm extends Component {
   return (
     <div className="SearchForm" >
       <h3 className="title">Find a unique experience.</h3>
-      <form>
+      <form onSubmit={this.props.handleSubmit}>
         <label className="label">WHERE</label>
         <PlacesAutocomplete
           value={this.props.address}
@@ -39,7 +38,7 @@ export default class HomePageSearchForm extends Component {
                         className,
                       })}
                     >
-                      <span>{suggestion.description}</span>
+                      <span>{suggestion.description.toLowerCase().includes('uk') ? suggestion.description : ""}</span>
                     </div>
                   );
                 })}
@@ -47,7 +46,7 @@ export default class HomePageSearchForm extends Component {
             </div>
           )}
         </PlacesAutocomplete>
-        <input type="submit" value="Search" />
+        <input className="SearchBtn" type="submit" value="Search" />
       </form>
     </div>
   )
